@@ -1,6 +1,6 @@
 #![no_std]
 
-use engine::{Client as G, Direction as D, MapElement as M};
+use engine::{Client as GameEngine, Direction, MapElement};
 use soroban_sdk::{contractimpl, BytesN, Env};
 
 pub struct Solution;
@@ -13,34 +13,46 @@ mod test;
 
 #[contractimpl]
 impl Solution {
-    pub fn solve(env: Env, eid: BytesN<32>) {
-        let e = G::new(&env, &eid);
+    pub fn solve(env: Env, engine_id: BytesN<32>) {
+        let engine = GameEngine::new(&env, &engine_id);
 
         // YOUR CODE START
-        while e.p_points() < 100 {
-            for (pos, ele) in e.get_map().iter().filter_map(Result::ok) {
-                let x = pos.0 - e.p_pos().0;
-                let mut dx = D::Right;
-                let y = pos.1 - e.p_pos().1;
-                let mut dy = D::Up;
-                if x < 0 {
-                    dx = D::Left;
+        let mut upgraded = false;
+        'outer: loop {
+            for (position, element) in engine.get_map().iter().filter_map(Result::ok) {
+                
+                if engine.p_points() >= 100 {
+                    break 'outer;
                 }
-                e.p_turn(&dx);
-                e.p_move(&Some(x.unsigned_abs()));
-                if y < 0 {
-                    dy = D::Down;
+
+                let mut direction_x = Direction::Right;
+                let step_x = position.0 - engine.p_pos().0;
+                if step_x < 0 {
+                    direction_x = Direction::Left;
                 }
-                e.p_turn(&dy);
-                e.p_move(&Some(y.unsigned_abs()));
-                match ele {
-                    M::FuelPod => e.p_harvest(),
-                    M::Asteroid => e.p_shoot(),
+                engine.p_turn(&direction_x);
+                engine.p_move(&Some(step_x.unsigned_abs()));
+
+                let mut direction_y = Direction::Up;
+                let step_y = position.1 - engine.p_pos().1;
+                if step_y < 0 {
+                    direction_y = Direction::Down;
+                }
+                engine.p_turn(&direction_y);
+                engine.p_move(&Some(step_y.unsigned_abs()));
+
+                match element {
+                    MapElement::FuelPod => engine.p_harvest(),
+                    MapElement::Asteroid => engine.p_shoot(),
                 }
             }
-            if e.get_map().is_empty() {
-                e.p_turn(&D::UpRight);
-                e.p_move(&Some(1));
+            if engine.get_map().is_empty() {
+                engine.p_turn(&Direction::UpRight);
+                engine.p_move(&Some(1));
+            }
+            if engine.p_points() >= 5 && upgraded == false {
+                engine.p_upgrade();
+                upgraded = true;
             }
         }
         
