@@ -27,18 +27,18 @@ impl Solution {
                     continue;
                 }
 
-                let mut direction_x = Direction::Right;
+                let direction_x = Direction::Right;
                 let step_x = position.0 - engine.p_pos().0;
                 if step_x < 0 {
-                    direction_x = Direction::Left;
+                    continue;
                 }
                 engine.p_turn(&direction_x);
                 engine.p_move(&Some(step_x.unsigned_abs()));
 
-                let mut direction_y = Direction::Up;
-                let step_y = position.1 - engine.p_pos().1;
+                let direction_y = Direction::Down;
+                let step_y = engine.p_pos().1 - position.1;
                 if step_y < 0 {
-                    direction_y = Direction::Down;
+                    continue;
                 }
                 engine.p_turn(&direction_y);
                 engine.p_move(&Some(step_y.unsigned_abs()));
@@ -54,7 +54,7 @@ impl Solution {
                 }
             }
 
-            engine.p_turn(&Direction::UpRight);
+            engine.p_turn(&Direction::DownRight);
             engine.p_move(&Some(2));
         }
 
