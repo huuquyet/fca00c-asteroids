@@ -20,9 +20,11 @@ impl Solution {
         let mut upgraded = false;
         'outer: loop {
             for (position, element) in engine.get_map().iter().filter_map(Result::ok) {
-                
                 if engine.p_points() >= 100 {
                     break 'outer;
+                }
+                if MapElement::FuelPod == element && engine.p_fuel() > 100 {
+                    continue;
                 }
 
                 let mut direction_x = Direction::Right;
@@ -45,17 +47,17 @@ impl Solution {
                     MapElement::FuelPod => engine.p_harvest(),
                     MapElement::Asteroid => engine.p_shoot(),
                 }
+                
+                if engine.p_points() >= 5 && upgraded == false {
+                    engine.p_upgrade();
+                    upgraded = true;
+                }
             }
-            if engine.get_map().is_empty() {
-                engine.p_turn(&Direction::UpRight);
-                engine.p_move(&Some(1));
-            }
-            if engine.p_points() >= 5 && upgraded == false {
-                engine.p_upgrade();
-                upgraded = true;
-            }
+
+            engine.p_turn(&Direction::UpRight);
+            engine.p_move(&Some(2));
         }
-        
+
         // YOUR CODE END
     }
 }
