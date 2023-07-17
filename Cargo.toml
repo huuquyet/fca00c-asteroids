@@ -6,7 +6,9 @@ members = [
 ]
 
 [workspace.dependencies.soroban-sdk]
-version = "0.6.0"
+git = "https://github.com/stellar/rs-soroban-sdk"
+version = "0.7.0"
+rev = "8abd335"
 
 [profile.release]
 opt-level = "z"
@@ -17,3 +19,7 @@ debug-assertions = false
 panic = "abort"
 codegen-units = 1
 lto = true
+
+[profile.release-with-logs]
+inherits = "release"
+debug-assertions = true

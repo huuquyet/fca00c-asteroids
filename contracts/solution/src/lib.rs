@@ -1,15 +1,14 @@
 #![no_std]
 
-use engine::{Client as GameEngine, Direction, MapElement};
 use soroban_sdk::{contractimpl, BytesN, Env};
 
-pub struct Solution;
+use engine::{Client as GameEngine, Direction, MapElement};
 
 mod engine {
     soroban_sdk::contractimport!(file = "../game_engine.wasm");
 }
 
-mod test;
+pub struct Solution;
 
 #[contractimpl]
 impl Solution {
@@ -49,15 +48,18 @@ impl Solution {
                 }
                 
                 if engine.p_points() >= 5 && upgraded == false {
-                    engine.p_upgrade();
+        engine.p_upgrade();
                     upgraded = true;
                 }
             }
 
-            engine.p_turn(&Direction::DownRight);
-            engine.p_move(&Some(2));
+        engine.p_turn(&Direction::DownRight);
+        engine.p_move(&Some(2));
         }
 
         // YOUR CODE END
     }
 }
+
+#[cfg(test)]
+mod test;
