@@ -46,15 +46,15 @@ impl Solution {
                     MapElement::FuelPod => engine.p_harvest(),
                     MapElement::Asteroid => engine.p_shoot(),
                 }
-                
+
                 if engine.p_points() >= 5 && upgraded == false {
-        engine.p_upgrade();
+                    engine.p_upgrade();
                     upgraded = true;
                 }
             }
 
-        engine.p_turn(&Direction::DownRight);
-        engine.p_move(&Some(2));
+            engine.p_turn(&Direction::DownRight);
+            engine.p_move(&Some(2));
         }
 
         // YOUR CODE END
