@@ -331,6 +331,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6c80984affa11d98d1b88b66ac8853f143217b399d3c74116778ff8fdb4ed2e"
 
 [[package]]
+name = "glob"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d2fabcfbdc87f4758337ca535fb41a6d701b65693ce38287d856d1674551ec9b"
+
+[[package]]
 name = "hashbrown"
 version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -341,6 +347,12 @@ name = "hashbrown"
 version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2c6201b9ff9fd90a5a3bac2e56a830d0caa509576f0e503818ee82c181b3437a"
+
+[[package]]
+name = "heck"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "95505c38b4572b2d910cecb0281560f54b440a19336cbbcb27bf6ce6adc6f5a8"
 
 [[package]]
 name = "hex"
@@ -379,6 +391,26 @@ name = "ident_case"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39"
+
+[[package]]
+name = "include_dir"
+version = "0.7.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "18762faeff7122e89e0857b02f7ce6fcc0d101d5e9ad2ad7846cc01d61b7f19e"
+dependencies = [
+ "glob",
+ "include_dir_macros",
+]
+
+[[package]]
+name = "include_dir_macros"
+version = "0.7.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b139284b5cf57ecfa712bcc66950bb635b31aff41c188e8a4cfc758eca374a3f"
+dependencies = [
+ "proc-macro2",
+ "quote",
+]
 
 [[package]]
 name = "indexmap"
@@ -781,8 +813,8 @@ dependencies = [
 
 [[package]]
 name = "soroban-ledger-snapshot"
-version = "0.8.0"
-source = "git+https://github.com/stellar/rs-soroban-sdk?rev=090f5c8#090f5c88e8f8b67f4d02010665aedfea6ee43db3"
+version = "0.8.7"
+source = "git+https://github.com/stellar/rs-soroban-sdk?rev=0e07326#0e073268daf98ffcdc56ea9bde35f74d51220bd6"
 dependencies = [
  "serde",
  "serde_json",
@@ -803,8 +835,8 @@ dependencies = [
 
 [[package]]
 name = "soroban-sdk"
-version = "0.8.0"
-source = "git+https://github.com/stellar/rs-soroban-sdk?rev=090f5c8#090f5c88e8f8b67f4d02010665aedfea6ee43db3"
+version = "0.8.7"
+source = "git+https://github.com/stellar/rs-soroban-sdk?rev=0e07326#0e073268daf98ffcdc56ea9bde35f74d51220bd6"
 dependencies = [
  "bytes-lit",
  "ed25519-dalek",
@@ -818,8 +850,8 @@ dependencies = [
 
 [[package]]
 name = "soroban-sdk-macros"
-version = "0.8.0"
-source = "git+https://github.com/stellar/rs-soroban-sdk?rev=090f5c8#090f5c88e8f8b67f4d02010665aedfea6ee43db3"
+version = "0.8.7"
+source = "git+https://github.com/stellar/rs-soroban-sdk?rev=0e07326#0e073268daf98ffcdc56ea9bde35f74d51220bd6"
 dependencies = [
  "darling",
  "itertools",
@@ -834,11 +866,13 @@ dependencies = [
 
 [[package]]
 name = "soroban-spec"
-version = "0.8.0"
-source = "git+https://github.com/stellar/rs-soroban-sdk?rev=090f5c8#090f5c88e8f8b67f4d02010665aedfea6ee43db3"
+version = "0.8.7"
+source = "git+https://github.com/stellar/rs-soroban-sdk?rev=0e07326#0e073268daf98ffcdc56ea9bde35f74d51220bd6"
 dependencies = [
  "base64 0.13.1",
  "darling",
+ "heck",
+ "include_dir",
  "itertools",
  "prettyplease",
  "proc-macro2",

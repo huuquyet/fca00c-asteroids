@@ -1,6 +1,6 @@
 #![no_std]
 
-use soroban_sdk::{contractimpl, BytesN, Env};
+use soroban_sdk::{contractimpl, Address, Env};
 
 use engine::{Client as GameEngine, Direction, MapElement};
 
@@ -12,7 +12,7 @@ pub struct Solution;
 
 #[contractimpl]
 impl Solution {
-    pub fn solve(env: Env, engine_id: BytesN<32>) {
+    pub fn solve(env: Env, engine_id: Address) {
         let engine = GameEngine::new(&env, &engine_id);
 
         // YOUR CODE START
