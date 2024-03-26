@@ -68,6 +68,9 @@ fn fca00c_fast() {
     let points = engine.p_points();
 
     println!("Points: {}", points);
+    println!("Pos: {:?}", engine.p_pos());
+    println!("Fuel: {}", engine.p_fuel());
+    println!("Map: {:?}", engine.get_map());
     assert!(points >= 100);
 }
 
@@ -112,6 +115,8 @@ pub fn fca00c_budget() {
     let points = engine.p_points();
 
     println!("Points: {}", points);
+    println!("Pos: {:?}", engine.p_pos());
+    println!("Fuel: {}", engine.p_fuel());
     assert!(points >= 100);
 }
 

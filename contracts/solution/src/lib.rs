@@ -1,13 +1,16 @@
 #![no_std]
 
-use soroban_sdk::{contractimpl, Address, Env};
+use soroban_sdk::{contract, contractimpl, Address, Env};
 
 use engine::{Client as GameEngine, Direction, MapElement};
 
 mod engine {
-    soroban_sdk::contractimport!(file = "../game_engine.wasm");
+    soroban_sdk::contractimport!(
+        file = "../../target/wasm32-unknown-unknown/release/soroban_game_engine.wasm"
+    );
 }
 
+#[contract]
 pub struct Solution;
 
 #[contractimpl]
@@ -18,7 +21,7 @@ impl Solution {
         // YOUR CODE START
         let mut upgraded = false;
         'outer: loop {
-            for (position, element) in engine.get_map().iter().filter_map(Result::ok) {
+            for (position, element) in engine.get_map().iter() {
                 if engine.p_points() >= 100 {
                     break 'outer;
                 }

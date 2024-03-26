@@ -2,11 +2,13 @@
 resolver = "2"
 
 members = [
+    "contracts/game_engine",
     "contracts/solution"
 ]
 
 [workspace.dependencies]
 soroban-sdk = "20.5.0"
+rand = { version = "0.8.5", features = ["small_rng"], default-features = false }
 
 [profile.release]
 opt-level = "z"

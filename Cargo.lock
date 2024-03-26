@@ -1030,6 +1030,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "soroban-game-engine"
+version = "0.1.0"
+dependencies = [
+ "rand",
+ "soroban-sdk",
+]
+
+[[package]]
 name = "soroban-ledger-snapshot"
 version = "20.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
