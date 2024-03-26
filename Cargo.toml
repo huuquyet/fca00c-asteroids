@@ -5,10 +5,8 @@ members = [
     "contracts/solution"
 ]
 
-[workspace.dependencies.soroban-sdk]
-git = "https://github.com/stellar/rs-soroban-sdk"
-version = "0.8.7"
-rev = "0e07326"
+[workspace.dependencies]
+soroban-sdk = "20.5.0"
 
 [profile.release]
 opt-level = "z"
