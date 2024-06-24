@@ -6,6 +6,11 @@ members = [
     "contracts/solution"
 ]
 
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+publish = false
+
 [workspace.dependencies]
 soroban-sdk = "20.5.0"
 rand = { version = "0.8.5", features = ["small_rng"], default-features = false }

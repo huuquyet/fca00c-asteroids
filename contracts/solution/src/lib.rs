@@ -6,7 +6,7 @@ use engine::{Client as GameEngine, Direction, MapElement};
 
 mod engine {
     soroban_sdk::contractimport!(
-        file = "../../target/wasm32-unknown-unknown/release/soroban_game_engine.wasm"
+        file = "../game_engine.wasm" // "../../target/wasm32-unknown-unknown/release/soroban_game_engine.wasm"
     );
 }
 
