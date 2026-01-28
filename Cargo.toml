@@ -12,7 +12,7 @@ edition = "2021"
 publish = false
 
 [workspace.dependencies]
-soroban-sdk = "20.5.0"
+soroban-sdk = "22.0.9"
 rand = { version = "0.8.5", features = ["small_rng"], default-features = false }
 
 [profile.release]
